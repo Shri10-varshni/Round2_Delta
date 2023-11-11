@@ -53,3 +53,15 @@ def update_task_for_user(db: Session, task_id: int, task: schemas.TaskBase):
     db.commit()
     db.refresh(db_task)
     return {"Status": "Success", "Updated_Task": db_task}
+
+# Changes the status of a pending task to completed
+def mark_as_done(db: Session, task_id: int):  
+    db_task = db.query(models.Task).filter(models.Task.id == task_id).first()
+
+    if db_task is None:
+        return None  # Returns None if Task ID is not found
+    db_task.status = "Completed"  
+    db.commit()
+    db.refresh(db_task)
+    return {"Status": "Success", "Task_Marked_Done": db_task}
+
