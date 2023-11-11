@@ -68,6 +68,18 @@ def update_task(
 
     return db_task
 
+# Mark_as_Done_TaskID (Put method)
+@app.put("/markasdone-task/{id}", response_model=TaskBase)
+def markasdone_task(
+    id: int, db: Session = Depends(get_db)):
+    db_task = mark_as_done(db=db, task_id=id)
+
+    # Exception Handling - Not Found
+    if db_task is None:
+        raise HTTPException(status_code=404, detail="Task not found")
+
+    return db_task   
+
 # Delete_Task_by_TaskID (Delete Method)
 @app.delete("/delete-task/{id}", response_model=Task)
 def delete_task(
@@ -79,3 +91,4 @@ def delete_task(
         raise HTTPException(status_code=404, detail="Task not found")
 
     return db_task
+       
