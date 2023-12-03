@@ -25,7 +25,7 @@ The following are the steps to run and test the API:
 The following .py files are used for implementing the code
 1. **database.py** -  Code to create an engine and establish connaection to a database
 2. **models.py** -  Structure of tables used are defined here
-3 **schemas.py** - Response structures for data format using pydantic BaseModel 
+3. **schemas.py** - Response structures for data format using pydantic BaseModel 
 4. **crud.py** - Code for all the functionalities that can be implemented
 5. **main.py** - Endpoints corresponding the functionalities
 
