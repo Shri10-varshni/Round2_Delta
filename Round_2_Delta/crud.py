@@ -64,22 +64,13 @@ def authenticate_user(user_name: str, password: str):
 
 # Updates the active status of a user (Pass the data of the authenticated user)
 def update_active_status(user: Userdb):
-    #db = SessionLocal()
 
     if not user:
         raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="User not found")
-    
-    #db_user = db.query(Userdb).filter(Userdb.user_name == user.user_name).first()
 
     if user.is_active is False:
         user.is_active = True
-
-    #if db_user.is_active is False:
-        #db_user.is_active = True
-
-    #db.commit()   
-    #db.refresh(db_user)
-    #db.close()
+        
     return user
 
 # Gets the data of the user who is currently logged-in
